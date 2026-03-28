@@ -1,4 +1,13 @@
 import random
+from constants import CHOICES_NAMES
+
+# Maps each choice to what it beats
+WINS_AGAINST = {'r': 's', 's': 'p', 'p': 'r'}
+
+
+def is_win(player, opponent):
+    return WINS_AGAINST.get(player) == opponent
+
 
 def play(user_choice):
     computer_choice = random.choice(['r', 'p', 's'])
@@ -12,7 +21,7 @@ def play(user_choice):
 
     return result, computer_choice
 
-def is_win(player, opponent):
-     # return true if player wins
-     if (player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') or (player == 'p' and opponent == 'r'):
-         return True
+
+def get_choice_name(choice):
+    """Return the display name for a choice key."""
+    return CHOICES_NAMES.get(choice, "Unknown")
